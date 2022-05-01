@@ -1,0 +1,38 @@
+<template>
+
+    <div if:true={isloading} class="slds-is-relative">
+        <lightning-spinner alternative-text="Loading..." variant="brand">
+        </lightning-spinner>
+    </div>
+
+    <article class="slds-card slds-m-around_small">
+        <template if:true={dataloaded}>
+            <table class="slds-table slds-table--bordered">
+                <tbody>
+                    <tr>
+                        <th>Name:</th>
+                        <td>{account.fields.Name.value}</td>
+                    </tr>
+                    <tr>
+                        <th>Industry:</th>
+                        <td>{account.fields.Industry.value}</td>
+                    </tr>
+                    <tr>
+                        <th>Type:</th>
+                        <td>{account.fields.Type.value}</td>
+                    </tr>
+                    <tr>
+                        <th>Owner:</th>
+                        <td>{account.fields.Owner.displayValue}</td>
+                    </tr>
+                    <tr>
+                        <th>Owner Picture:</th>
+                        <td>
+                            <img src={account.fields.Owner.value.fields.SmallPhotoUrl.value} />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </template>
+    </article>
+</template>

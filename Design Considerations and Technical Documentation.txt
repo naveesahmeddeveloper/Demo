@@ -1,0 +1,31 @@
+Design Considerations and Technical Documentation:
+
+1. Make sure trigger is bulkified and can process more than one and also more than 200 records
+2. Make sure actual business logic is in a handler class and not in trigger itself
+3. Make suse code is not duplicate and same code can process insert and update calls
+4. Make sure code is checking for nulls because most of the times exceptions occure on null values
+5. Make sure that we have a test factory class which create all the test data so it can be reused and if there is any chaange while creating test data then it can be applied only at one place.
+6. Make sure test method is covering before insert, update and also covering for more than 200 records. Also added assertion statements to validate the tese results.
+7 Make sure that each object has only one trigger.
+
+Assumptions:
+
+1. assuming there is no recurrision in the transaction and this code will execute only once. Otherwise recurrison will need to be handled
+2. assuming that when industry will chnage on Account, then account trigger will touch all related contacts so that industry will be updated on contacts. Otherwise industry on contact will be wrong until contact is touched.
+
+Technical Documentation:
+
+1. ContactTriggerHandler
+	This class contains code to handle business logic for before and after trigger. If same code needs to be executed for bothe insert and update then a seperate method should be created/updated to handle the logic
+	beforeInsertUpdate method will take list of contacts which are being updated in one batch and will update industry from account
+
+2. ContactTrigger
+	This trigger is on Contact object and calls methods from ContactTrigegrHendler depending on the operation. For other operations like after insert, update, delete same trigger should be modified.
+
+3. TestFactory
+	This class contains all the methods to create any sObject. For future test methods if there is a need to create more test data then same class should be updated
+
+4. ContactTriggerHandlerTest
+	This class will test all operations performed on Contact during insert and update.
+	setupTestData method will call TestFactory to create test data and will be executed for every test method
+	testAccountIndustry method will test before insert and update and will validate if Account Industry is populated from Account or not.

@@ -1,0 +1,15 @@
+<apex:page>
+    <apex:includeLightning />    
+    <div id="lwcDemoId" />    
+    <script>
+    $Lightning.use("c:LWCDemoApp", function() {
+        $Lightning.createComponent("c:lWCDemoCmp",
+          { 
+          },
+          "lwcDemoId",
+          function(cmp) {
+             console.log('lwcDemoId added in VF page');
+          });
+    });
+    </script>
+</apex:page>

@@ -1,0 +1,12 @@
+.accRow:hover {
+    border: 1px solid rgb(1, 118, 211) !important;
+}
+.accRow:active {
+    border: 1px solid rgb(1, 118, 211) !important;
+}
+.btn:hover {
+   border: 1px solid rgb(1, 118, 211) !important;
+}
+.btn:active {
+    border: 1px solid rgb(1, 118, 211) !important;
+}

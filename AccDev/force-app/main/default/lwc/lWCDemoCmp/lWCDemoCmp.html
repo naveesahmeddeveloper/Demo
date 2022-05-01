@@ -1,0 +1,44 @@
+<template>
+    <template if:true={accounts}>
+
+        <article class="slds-card slds-m-around_small">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__figure">
+                        <lightning-icon icon-name="standard:account" alternative-text="Account" title="Account">
+                        </lightning-icon>
+                    </div>
+                    <div class="slds-media__body">
+                        <h2 class="slds-card__header-title">
+                            <a href="#" class="slds-card__header-link slds-truncate" title="Accounts">
+                                <span>Accounts ({totalaccounts})</span>
+                            </a>
+                        </h2>
+                    </div>
+                </header>
+            </div>
+            <div class="slds-card__body slds-card__body_inner">
+                <template if:true={showallaccounts}>
+                    <table class="slds-table slds-table--bordered">
+                        <tbody>
+                            <template for:each={accounts} for:item="account" for:index="index">
+                                <tr key={account.Id}>
+                                    <td id={account.Id} class="accRow">{account.Name}
+                                        <lightning-button label="Next" title="Next" onclick={handleClick}
+                                            style="float:right;" data-id={account.Id} class="">
+                                        </lightning-button>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </template>
+                <template if:true={accountselected}>
+                    <c-accountdetail accountid={selectedaccountid} isloading="true"></c-accountdetail>
+                    <lightning-button label="Back" title="Back" onclick={handleBackClick}>
+                    </lightning-button>
+                </template>
+            </div>
+        </article>
+    </template>
+</template>
